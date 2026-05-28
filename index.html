@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>වාහන පිස්සා.com | Sri Lanka's Premium Car Marketplace</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="වාහන පිස්සා.com is Sri Lanka's ultimate minimalist car selling and buying platform. Post ads, view analytics, and chat directly via WhatsApp.">
+    <meta name="keywords" content="cars for sale sri lanka, vahana pissa, වාහන පිස්සා, buy cars sri lanka, post vehicle ads free">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Background Wrapper with Watermark Showroom Blur -->
+    <div class="bg-wrapper">
+        <div class="bg-image"></div>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area" id="nav-logo">
+                <span class="logo-red">වාහන</span>  පිස්සා<span class="logo-domain">.com</span>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#home" class="nav-link active" data-tab="home">Home</a>
+                <a href="#post" class="nav-link" data-tab="post" id="nav-post-ad">Post Ad</a>
+                <a href="#dashboard" class="nav-link" data-tab="dashboard" id="nav-dashboard">Dashboard</a>
+                <a href="#admin" class="nav-link hidden" data-tab="admin" id="nav-admin-panel">Admin Panel</a>
+            </nav>
+
+            <div class="header-actions">
+                <button id="btn-login-header" class="btn btn-primary btn-sm">
+                    Sign In
+                </button>
+                <div id="user-profile-menu" class="user-profile-menu hidden">
+                    <img id="user-avatar" src="" alt="User Avatar" class="user-avatar">
+                    <span id="user-name-display" class="user-name-display"></span>
+                    <button id="btn-logout" class="btn btn-logout-icon" title="Logout">
+                        <i data-lucide="log-out"></i>
+                    </button>
+                </div>
+                <button id="btn-theme-toggle" class="btn-theme-toggle" title="Toggle Theme">
+                    <i data-lucide="moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+        <!-- Notification Toast -->
+        <div id="toast" class="toast hidden">
+            <span id="toast-message">Notification message</span>
+        </div>
+
+
+        <!-- 1. HOME VIEW -->
+        <section id="tab-home" class="tab-content active">
+            <!-- Figma Style Hero Section -->
+            <div class="hero-container">
+                <div class="hero-left">
+                    <h1 class="hero-title animate-pop-in">Your Journey,<br>Your Car,<br>Your Way</h1>
+                    <p class="hero-subtitle animate-fade-in">Experience the ultimate freedom of choice with වාහන පිස්සා.com - tailor your adventure by choosing from our premium fleet of vehicles.</p>
+                    
+                    <div class="hero-actions animate-fade-in">
+                        <button id="btn-hero-start" class="btn btn-primary btn-lg">Get Started</button>
+                    </div>
+                    
+                    <!-- Social Proof and Tags -->
+                    <div class="hero-meta-row animate-fade-in">
+                        <div class="hero-social-proof">
+                            <div class="avatar-group">
+                                <img src="https://api.dicebear.com/7.x/initials/svg?seed=KP" alt="User 1" class="avatar-overlap">
+                                <img src="https://api.dicebear.com/7.x/initials/svg?seed=SS" alt="User 2" class="avatar-overlap">
+                                <img src="https://api.dicebear.com/7.x/initials/svg?seed=DS" alt="User 3" class="avatar-overlap">
+                                <div class="avatar-overlap avatar-count">+50</div>
+                            </div>
+                            <div class="social-text">
+                                <strong>12.5K+ PEOPLE</strong>
+                                <span>had used our services to buy, sell, or view cars.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-pill-filters">
+                            <span class="pill-tag active">Rent</span>
+                            <span class="pill-tag">Buy</span>
+                            <span class="pill-tag">Sell</span>
+                            <span class="pill-tag">Consult</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-right animate-pop-in">
+                    <div class="hero-watermark-text">PISSA</div>
+                    <!-- Front facing red Mercedes-Benz matching design -->
+                    <img src="assets/images/hero-car.png" alt="Mercedes-Benz Red Sedan" class="hero-car-img">
+                </div>
+            </div>
+
+            <!-- Partner Brand Logos Banner -->
+            <div class="partner-logos-bar animate-fade-in">
+                <div class="logo-item" data-make="Toyota" title="Filter by Toyota">
+                    <svg viewBox="0 0 100 70" width="48" height="32" fill="currentColor"><path d="M50 0C22.4 0 0 14.5 0 32.5s22.4 32.5 50 32.5 50-14.5 50-32.5S77.6 0 50 0zm0 58.5c-20.7 0-37.5-10.8-37.5-24s16.8-24 37.5-24 37.5 10.8 37.5 24-16.8 24-37.5 24zm0-41.5c-6.9 0-12.5 6.7-12.5 15s5.6 15 12.5 15 12.5-6.7 12.5-15-5.6-15-12.5-15zm0 25c-4.1 0-7.5-4.5-7.5-10s3.4-10 7.5-10 7.5 4.5 7.5 10-3.4 10-7.5 10zm-27.5-10c0-6.6 4.5-12 10-12 1 0 2 .2 2.9.5-2.9 2.4-4.9 6.4-4.9 10.9s2 8.5 4.9 10.9c-.9.3-1.9.5-2.9.5-5.5 0-10-5.4-10-11.8zm45 0c0-4.5-2-8.5-4.9-10.9.9-.3 1.9-.5 2.9-.5 5.5 0 10 5.4 10 11.8s-4.5 12-10 12c-1 0-2-.2-2.9-.5 2.9-2.4 4.9-6.4 4.9-10.9z"/></svg>
+                    <span>Toyota</span>
+                </div>
+                <div class="logo-item" data-make="BMW" title="Filter by BMW">
+                    <svg viewBox="0 0 100 100" width="36" height="36" fill="currentColor"><circle cx="50" cy="50" r="48" stroke="currentColor" stroke-width="4" fill="none"/><circle cx="50" cy="50" r="36" fill="none" stroke="currentColor" stroke-width="2"/><path d="M50 14A36 36 0 0 1 86 50H50z" fill="currentColor" opacity="0.15"/><path d="M14 50A36 36 0 0 1 50 14V50z" fill="none"/><path d="M50 50v36A36 36 0 0 1 14 50z" fill="currentColor" opacity="0.15"/><path d="M86 50A36 36 0 0 1 50 86V50z" fill="none"/><text x="50" y="28" font-family="sans-serif" font-size="10" font-weight="900" text-anchor="middle" fill="currentColor">M</text><text x="32" y="38" font-family="sans-serif" font-size="10" font-weight="900" text-anchor="middle" fill="currentColor" transform="rotate(-30 32 38)">B</text><text x="68" y="38" font-family="sans-serif" font-size="10" font-weight="900" text-anchor="middle" fill="currentColor" transform="rotate(30 68 38)">W</text></svg>
+                    <span>BMW</span>
+                </div>
+                <div class="logo-item" data-make="Honda" title="Filter by Honda">
+                    <svg viewBox="0 0 100 100" width="36" height="36" fill="currentColor"><rect x="5" y="5" width="90" height="90" rx="20" ry="20" stroke="currentColor" stroke-width="6" fill="none"/><path d="M28 25v50h12V56h20v19h12V25H60v19H40V25z" fill="currentColor"/></svg>
+                    <span>Honda</span>
+                </div>
+                <div class="logo-item" data-make="Tesla" title="Filter by Tesla">
+                    <svg viewBox="0 0 100 100" width="36" height="36" fill="currentColor"><path d="M10 10c25 3 55 3 80 0v5c-15 4-29 11-40 23h20v4H56c-1 4-1 9-1 14 0 13 3 24 8 34l-3 1c-4-9-7-19-8-30H46c-1 11-4 21-8 30l-3-1c5-10 8-21 8-34 0-5 0-10-1-14H20v-4h20C29 26 15 19 0 15v-5z"/></svg>
+                    <span>Tesla</span>
+                </div>
+                <div class="logo-item" data-make="Land Rover" title="Filter by Land Rover">
+                    <svg viewBox="0 0 100 60" width="48" height="28" fill="currentColor"><ellipse cx="50" cy="30" rx="46" ry="26" stroke="currentColor" stroke-width="4" fill="none"/><text x="50" y="36" font-family="sans-serif" font-size="10" font-weight="900" letter-spacing="1.5" text-anchor="middle" fill="currentColor">ROVER</text></svg>
+                    <span>Land Rover</span>
+                </div>
+                <div class="logo-item" data-make="Audi" title="Filter by Audi">
+                    <svg viewBox="0 0 180 70" width="58" height="24" fill="currentColor"><circle cx="35" cy="35" r="28" stroke="currentColor" stroke-width="7" fill="none"/><circle cx="70" cy="35" r="28" stroke="currentColor" stroke-width="7" fill="none"/><circle cx="105" cy="35" r="28" stroke="currentColor" stroke-width="7" fill="none"/><circle cx="140" cy="35" r="28" stroke="currentColor" stroke-width="7" fill="none"/></svg>
+                    <span>Audi</span>
+                </div>
+            </div>
+
+            <!-- Redesigned Search & Filters Capsule Bar -->
+            <div class="filter-bar-capsule animate-fade-in">
+                <!-- Search input -->
+                <div class="filter-item search-item">
+                    <i data-lucide="search" class="filter-icon"></i>
+                    <div class="input-wrapper">
+                        <label for="search-input">Search Vehicles</label>
+                        <input type="text" id="search-input" placeholder="Type make, model or keywords...">
+                    </div>
+                </div>
+                
+                <div class="filter-divider"></div>
+                
+                <!-- Make select -->
+                <div class="filter-item select-item">
+                    <i data-lucide="tag" class="filter-icon"></i>
+                    <div class="select-wrapper">
+                        <label for="filter-make">Brand / Make</label>
+                        <select id="filter-make">
+                            <option value="">All Brands</option>
+                            <!-- Dynamically populated -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="filter-divider"></div>
+                
+                <!-- Location select -->
+                <div class="filter-item select-item">
+                    <i data-lucide="map-pin" class="filter-icon"></i>
+                    <div class="select-wrapper">
+                        <label for="filter-location">Location</label>
+                        <select id="filter-location">
+                            <option value="">All Districts</option>
+                            <option value="Colombo">Colombo</option>
+                            <option value="Gampaha">Gampaha</option>
+                            <option value="Kalutara">Kalutara</option>
+                            <option value="Kandy">Kandy</option>
+                            <option value="Matale">Matale</option>
+                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                            <option value="Galle">Galle</option>
+                            <option value="Matara">Matara</option>
+                            <option value="Hambantota">Hambantota</option>
+                            <option value="Jaffna">Jaffna</option>
+                            <option value="Kilinochchi">Kilinochchi</option>
+                            <option value="Mannar">Mannar</option>
+                            <option value="Vavuniya">Vavuniya</option>
+                            <option value="Mullaitivu">Mullaitivu</option>
+                            <option value="Batticaloa">Batticaloa</option>
+                            <option value="Ampara">Ampara</option>
+                            <option value="Trincomalee">Trincomalee</option>
+                            <option value="Kurunegala">Kurunegala</option>
+                            <option value="Puttalam">Puttalam</option>
+                            <option value="Anuradhapura">Anuradhapura</option>
+                            <option value="Polonnaruwa">Polonnaruwa</option>
+                            <option value="Badulla">Badulla</option>
+                            <option value="Moneragala">Moneragala</option>
+                            <option value="Ratnapura">Ratnapura</option>
+                            <option value="Kegalle">Kegalle</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="filter-divider"></div>
+                
+                <!-- Sleek Airbnb Filter toggle button -->
+                <button id="btn-open-filters" class="btn-filter-toggle">
+                    <i data-lucide="sliders-horizontal"></i>
+                    <span>Filters</span>
+                </button>
+            </div>
+
+            <!-- Ads Section -->
+            <div class="ads-section">
+                <div class="fleet-header">
+                    <span class="fleet-tagline">THE CARS</span>
+                    <h2 class="fleet-title">Our Impressive Fleet</h2>
+                    <span id="results-count" class="results-count">Showing 0 listings</span>
+                </div>
+                
+                <!-- Shimmer Loading state -->
+                <div id="ads-loader" class="ads-grid hidden">
+                    <div class="shimmer-card"></div>
+                    <div class="shimmer-card"></div>
+                    <div class="shimmer-card"></div>
+                </div>
+                
+                <!-- Ad Cards Grid -->
+                <div id="ads-container" class="ads-grid">
+                    <!-- Cards will be populated here -->
+                </div>
+                <!-- Empty State -->
+                <div id="empty-state" class="empty-state hidden">
+                    <i data-lucide="car-front"></i>
+                    <h3>No Vehicles Found</h3>
+                    <p>Try adjusting your search filters or browse other options.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. POST AD VIEW -->
+        <section id="tab-post" class="tab-content">
+            <div class="form-container glass-panel">
+                <h2 class="form-title"><i data-lucide="plus-circle"></i> Post Your Advertisement</h2>
+                <p class="form-subtitle">Fill in the details to publish your car to thousands of buyers instantly.</p>
+                
+                <!-- Login Alert for Posting -->
+                <div id="post-login-required" class="form-login-alert">
+                    <i data-lucide="info"></i>
+                    <div>
+                        <h4>Sign In Required</h4>
+                        <p>You need to sign in to post an advertisement.</p>
+                    </div>
+                    <button id="btn-login-post" class="btn btn-primary btn-sm">Sign In Now</button>
+                </div>
+
+                <form id="ad-post-form" class="hidden">
+                    <div class="form-section">
+                        <h3>Vehicle details</h3>
+                        <div class="form-grid">
+                            <div class="form-group span-full">
+                                <label for="ad-title">Ad Title <span class="required">*</span></label>
+                                <input type="text" id="ad-title" placeholder="E.g. Toyota Aqua G Grade 2018 Mint Condition" required>
+                                <span class="input-desc">Give it a catch-phrase highlighting the make, model, and year.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="ad-make">Make / Brand <span class="required">*</span></label>
+                                <input type="text" id="ad-make" placeholder="E.g. Toyota, Honda, Suzuki" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ad-model">Model <span class="required">*</span></label>
+                                <input type="text" id="ad-model" placeholder="E.g. Aqua, Civic, Swift, Alto" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ad-year">Year of Manufacture <span class="required">*</span></label>
+                                <input type="number" id="ad-year" placeholder="E.g. 2018" min="1900" max="2027" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ad-price">Price (LKR) <span class="required">*</span></label>
+                                <input type="number" id="ad-price" placeholder="E.g. 8500000" min="0" required>
+                            </div>
+                            <div class="form-group-inline checkbox-container span-full">
+                                <input type="checkbox" id="ad-negotiable" checked>
+                                <label for="ad-negotiable">Price is Negotiable</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="ad-location">Location (District) <span class="required">*</span></label>
+                                <select id="ad-location" required>
+                                    <option value="" disabled selected>Select District</option>
+                                    <option value="Colombo">Colombo</option>
+                                    <option value="Gampaha">Gampaha</option>
+                                    <option value="Kalutara">Kalutara</option>
+                                    <option value="Kandy">Kandy</option>
+                                    <option value="Matale">Matale</option>
+                                    <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                    <option value="Galle">Galle</option>
+                                    <option value="Matara">Matara</option>
+                                    <option value="Hambantota">Hambantota</option>
+                                    <option value="Jaffna">Jaffna</option>
+                                    <option value="Kilinochchi">Kilinochchi</option>
+                                    <option value="Mannar">Mannar</option>
+                                    <option value="Vavuniya">Vavuniya</option>
+                                    <option value="Mullaitivu">Mullaitivu</option>
+                                    <option value="Batticaloa">Batticaloa</option>
+                                    <option value="Ampara">Ampara</option>
+                                    <option value="Trincomalee">Trincomalee</option>
+                                    <option value="Kurunegala">Kurunegala</option>
+                                    <option value="Puttalam">Puttalam</option>
+                                    <option value="Anuradhapura">Anuradhapura</option>
+                                    <option value="Polonnaruwa">Polonnaruwa</option>
+                                    <option value="Badulla">Badulla</option>
+                                    <option value="Moneragala">Moneragala</option>
+                                    <option value="Ratnapura">Ratnapura</option>
+                                    <option value="Kegalle">Kegalle</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Vehicle Images</h3>
+                        <div class="form-group">
+                            <label>Upload Images <span class="required">*</span></label>
+                            <div class="image-uploader-box" id="image-dropzone">
+                                <i data-lucide="image-plus" class="upload-icon"></i>
+                                <p class="upload-title">Drag & Drop images here, or click to upload</p>
+                                <p class="upload-subtitle">Maximum 5 images. Recommended size 800x600. Max 10MB total.</p>
+                                <input type="file" id="image-input" multiple accept="image/*" class="hidden">
+                            </div>
+                            <div class="uploaded-images-preview" id="image-preview-container">
+                                <!-- Image preview items will be generated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Description</h3>
+                        <div class="form-group">
+                            <label for="ad-description">Detailed Description <span class="required">*</span></label>
+                            <textarea id="ad-description" rows="6" placeholder="Describe the vehicle's features, packages, service history, mechanical condition, options, modifications, etc." required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Seller Contact Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="ad-seller-name">Seller Name <span class="required">*</span></label>
+                                <input type="text" id="ad-seller-name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ad-seller-email">Seller Email <span class="required">*</span></label>
+                                <input type="email" id="ad-seller-email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ad-seller-phone">Seller Phone <span class="required">*</span></label>
+                                <input type="tel" id="ad-seller-phone" placeholder="E.g. +94771234567 or 0771234567" required>
+                                <span class="input-desc">Include phone format with Sri Lankan country code for WhatsApp link.</span>
+                            </div>
+                            <div class="form-group-inline checkbox-container span-full">
+                                <input type="checkbox" id="ad-whatsapp-link" checked>
+                                <label for="ad-whatsapp-link">Enable direct chat on WhatsApp link for buyers</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="btn-submit-ad" class="btn btn-primary btn-lg btn-full-mobile">
+                            Publish Advertisement
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- 3. DASHBOARD VIEW -->
+        <section id="tab-dashboard" class="tab-content">
+            <!-- Profile Info glass card -->
+            <div class="dashboard-header glass-panel animate-fade-in">
+                <div class="profile-card">
+                    <img id="dashboard-avatar" src="" alt="Avatar" class="dashboard-avatar">
+                    <div class="profile-details">
+                        <h2 id="dashboard-user-name">Guest User</h2>
+                        <p id="dashboard-user-email">Sign in to manage your advertisements</p>
+                    </div>
+                </div>
+                <div class="dashboard-stats">
+                    <div class="stat-box">
+                        <span class="stat-num" id="stat-my-ads">0</span>
+                        <span class="stat-label">My Listings</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num" id="stat-total-views">0</span>
+                        <span class="stat-label">Total Views</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Alert for Dashboard -->
+            <div id="dashboard-login-required" class="dashboard-login-alert glass-panel">
+                <i data-lucide="layout-dashboard" class="large-icon"></i>
+                <h3>Manage Your Ads and View Traffic</h3>
+                <p>Track how many views your ads are getting, edit details, and delete listings from your personalized dashboard.</p>
+                <button id="btn-login-dash" class="btn btn-primary">Sign In Now</button>
+            </div>
+
+            <!-- User Ads Grid -->
+            <div id="user-ads-section" class="user-ads-section hidden">
+                <h3 class="subsection-title">My Ads Management</h3>
+                <div id="user-ads-container" class="ads-grid">
+                    <!-- User ad cards populated here -->
+                </div>
+                <!-- User Empty State -->
+                <div id="user-empty-state" class="user-empty-state hidden">
+                    <i data-lucide="plus-circle"></i>
+                    <h4>You haven't posted any advertisements yet.</h4>
+                    <p>Post your first advertisement to start receiving viewer stats!</p>
+                    <button class="btn btn-primary" onclick="window.location.hash='#post';">
+                        Post Your First Ad
+                    </button>
+            </div>
+        </section>
+
+        <!-- 3b. ADMIN CONTROL PANEL -->
+        <section id="tab-admin" class="tab-content">
+            <!-- Admin Header -->
+            <div class="dashboard-header glass-panel animate-fade-in">
+                <div class="profile-card">
+                    <div class="profile-details">
+                        <h2>Admin Control Panel</h2>
+                        <p>Review and moderate pending vehicle advertisements</p>
+                    </div>
+                </div>
+                <div class="dashboard-stats">
+                    <div class="stat-box">
+                        <span class="stat-num" id="stat-pending-ads">0</span>
+                        <span class="stat-label">Pending Review</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Ads Section -->
+            <div id="admin-ads-section" class="user-ads-section">
+                <h3 class="subsection-title">Pending Advertisements</h3>
+                <div id="admin-ads-container" class="ads-grid">
+                    <!-- Admin pending ad cards populated here -->
+                </div>
+                <!-- Admin Empty State -->
+                <div id="admin-empty-state" class="user-empty-state hidden">
+                    <i data-lucide="check-circle" style="color: var(--success); width: 48px; height: 48px; display: block; margin: 0 auto 10px;"></i>
+                    <h4>All Caught Up!</h4>
+                    <p>There are no advertisements pending review at the moment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Manual Register / Sign In View -->
+        <section id="tab-auth" class="tab-content">
+            <div class="auth-page-container">
+
+                <div class="auth-card glass-panel">
+                    <div class="auth-toggle-buttons">
+                        <button id="btn-toggle-signin" class="auth-toggle-btn active">Sign In</button>
+                        <button id="btn-toggle-register" class="auth-toggle-btn">Register</button>
+                    </div>
+
+                    <!-- Sign In Form -->
+                    <form id="auth-signin-form" class="auth-form">
+                        <h3 class="auth-title">Welcome Back</h3>
+                        <p class="auth-subtitle">Enter your credentials to access your account</p>
+                        
+                        <div class="form-group">
+                            <label for="auth-signin-email">Email Address</label>
+                            <input type="email" id="auth-signin-email" placeholder="email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="auth-signin-password">Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="auth-signin-password" placeholder="••••••••" required>
+                                <button type="button" class="btn-password-toggle" id="toggle-signin-password" title="Show/Hide Password">
+                                    <i data-lucide="eye" id="toggle-signin-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" id="btn-auth-signin" class="btn btn-primary btn-full">
+                            Sign In
+                        </button>
+                    </form>
+
+                    <!-- Register Form (Hidden by default) -->
+                    <form id="auth-register-form" class="auth-form hidden">
+                        <h3 class="auth-title">Create an Account</h3>
+                        <p class="auth-subtitle">Get started by filling out your details below</p>
+                        
+                        <div class="form-group">
+                            <label for="auth-reg-name">Full Name</label>
+                            <input type="text" id="auth-reg-name" placeholder="Kamal Gunaratne" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="auth-reg-email">Email Address</label>
+                            <input type="email" id="auth-reg-email" placeholder="email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="auth-reg-password">Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="auth-reg-password" placeholder="Min. 6 characters" minlength="6" required>
+                                <button type="button" class="btn-password-toggle" id="toggle-reg-password" title="Show/Hide Password">
+                                    <i data-lucide="eye" id="toggle-reg-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" id="btn-auth-register" class="btn btn-primary btn-full">
+                            Register
+                        </button>
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="auth-divider">
+                        <span>or</span>
+                    </div>
+
+                    <!-- Google Sign In Button -->
+                    <button id="btn-google-signin" class="btn btn-google btn-full">
+                        <svg class="google-icon" viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                        </svg>
+                        Sign in with Google
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand-section">
+                <a href="#home" class="footer-logo">
+                    <span class="logo-red">වාහන</span> පිස්සා<span class="logo-domain">.com</span>
+                </a>
+                <p class="footer-description">
+                    Sri Lanka's premium vehicle marketplace. Buy and sell cars, SUVs, motorbikes, and vans with ease.
+                </p>
+                <div class="footer-socials">
+                    <a href="#" class="social-link" title="Facebook"><i data-lucide="facebook"></i></a>
+                    <a href="#" class="social-link" title="Twitter"><i data-lucide="twitter"></i></a>
+                    <a href="#" class="social-link" title="Instagram"><i data-lucide="instagram"></i></a>
+                    <a href="#" class="social-link" title="Youtube"><i data-lucide="youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-grid">
+                <div class="footer-links-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#post">Sell your Vehicle</a></li>
+                        <li><a href="#dashboard">My Dashboard</a></li>
+                        <li><a href="#auth">Login / Register</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-column">
+                    <h3>Popular Brands</h3>
+                    <ul>
+                        <li><a href="#home" class="brand-shortcut" data-make="Toyota">Toyota</a></li>
+                        <li><a href="#home" class="brand-shortcut" data-make="Honda">Honda</a></li>
+                        <li><a href="#home" class="brand-shortcut" data-make="Suzuki">Suzuki</a></li>
+                        <li><a href="#home" class="brand-shortcut" data-make="Nissan">Nissan</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info-list">
+                        <li>
+                            <i data-lucide="mail"></i>
+                            <a href="mailto:support@wahanapissa.com">support@wahanapissa.com</a>
+                        </li>
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <a href="tel:+94771234567">+94 77 123 4567</a>
+                        </li>
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>No. 45, Galle Road, Colombo 03, Sri Lanka</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 Wahana Pissa.com. All rights reserved.</p>
+                <p class="all-rights-available">All rights available.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <span>&bull;</span>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 4. AD DETAILS MODAL -->
+    <div id="details-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel animate-scale-up">
+            <button id="btn-close-modal" class="modal-close-btn" title="Close">
+                <i data-lucide="x"></i>
+            </button>
+            
+            <div class="modal-layout">
+                <!-- Gallery Section -->
+                <div class="modal-gallery">
+                    <div class="slider-container">
+                        <img id="modal-main-image" src="" alt="Vehicle Image" class="modal-main-img">
+                        <button id="btn-prev-img" class="slider-btn prev"><i data-lucide="chevron-left"></i></button>
+                        <button id="btn-next-img" class="slider-btn next"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                    <div id="modal-thumbnails" class="thumbnail-row">
+                        <!-- Thumbnail items dynamically injected -->
+                    </div>
+                </div>
+                
+                <!-- Information Section -->
+                <div class="modal-info">
+                    <div class="modal-header-info">
+                        <div class="modal-meta-row">
+                            <span class="badge badge-year" id="modal-year">2020</span>
+                            <span class="badge badge-location" id="modal-location-badge">
+                                <i data-lucide="map-pin"></i> <span id="modal-location">Colombo</span>
+                            </span>
+                            <span class="badge badge-views">
+                                <i data-lucide="eye"></i> <span id="modal-views">0</span> views
+                            </span>
+                        </div>
+                        <h2 id="modal-title" class="modal-title">Vehicle Ad Title</h2>
+                        <div class="price-container">
+                            <span id="modal-price" class="modal-price">LKR 0.00</span>
+                            <span id="modal-negotiable-badge" class="badge-negotiable">Negotiable</span>
+                        </div>
+                    </div>
+
+                    <!-- Details Table -->
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Make</span>
+                            <span class="spec-val" id="modal-make">Toyota</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Model</span>
+                            <span class="spec-val" id="modal-model">Corolla</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Year</span>
+                            <span class="spec-val" id="modal-year-spec">2020</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Location</span>
+                            <span class="spec-val" id="modal-location-spec">Colombo</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-desc-box">
+                        <h3>Description</h3>
+                        <p id="modal-description" class="modal-desc-text">
+                            Detailed description of the vehicle.
+                        </p>
+                    </div>
+
+                    <div class="modal-seller-card glass-card">
+                        <h3>Seller Information</h3>
+                        <div class="seller-details">
+                            <p class="seller-name"><i data-lucide="user"></i> <span id="modal-seller-name">Seller Name</span></p>
+                            <p class="seller-email"><i data-lucide="mail"></i> <span id="modal-seller-email">Seller Email</span></p>
+                            <p class="seller-phone"><i data-lucide="phone"></i> <span id="modal-seller-phone">Seller Phone</span></p>
+                        </div>
+                        <div class="seller-actions">
+                            <a id="btn-call-seller" href="tel:" class="btn btn-secondary">Call Seller</a>
+                            <a id="btn-whatsapp-seller" href="" target="_blank" class="btn btn-primary">Chat on WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <!-- Admin Moderation actions inside modal -->
+                    <div id="modal-admin-actions" class="modal-seller-card glass-card hidden" style="border-color: var(--primary); margin-top: 15px;">
+                        <h3>Admin Moderation</h3>
+                        <p style="color: var(--text-muted); font-size: 0.82rem; margin-bottom: 12px;">This post is currently pending review.</p>
+                        <div class="seller-actions">
+                            <button id="btn-approve-modal" class="btn btn-success" style="flex: 1;">Approve</button>
+                            <button id="btn-reject-modal" class="btn btn-danger" style="flex: 1;">Reject</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Popup Overlay (for Mock Auth Mode) -->
+    <div id="mock-login-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel animate-scale-up max-w-sm text-center">
+            <button id="btn-close-mock-login" class="modal-close-btn"><i data-lucide="x"></i></button>
+            <div class="mock-login-header">
+                <i data-lucide="database" class="glow-icon" style="color: var(--primary);"></i>
+                <h3>Demo Sign In</h3>
+                <p>Choose or enter a mock profile to sign in under Demo Mode</p>
+            </div>
+            <div class="form-group">
+                <label for="mock-user-select">Select Profile</label>
+                <select id="mock-user-select" class="select-full">
+                    <option value="kasun">Kasun Perera (kasun.perera@gmail.com)</option>
+                    <option value="shashini">Shashini Silva (shashini.silva@gmail.com)</option>
+                    <option value="admin">System Admin (admin@wahanapissa.com)</option>
+                    <option value="custom">-- Custom User --</option>
+                </select>
+            </div>
+            <div id="custom-mock-fields" class="hidden">
+                <div class="form-group">
+                    <label for="mock-user-name">Full Name</label>
+                    <input type="text" id="mock-user-name" placeholder="E.g. Kamal Gunaratne">
+                </div>
+                <div class="form-group">
+                    <label for="mock-user-email">Email Address</label>
+                    <input type="email" id="mock-user-email" placeholder="E.g. kamal@gmail.com">
+                </div>
+            </div>
+            <button id="btn-submit-mock-login" class="btn btn-primary btn-full-mobile">
+                Sign In as Guest
+            </button>
+        </div>
+    </div>
+
+    <!-- 6. AIRBNB-STYLE DYNAMIC FILTERS MODAL -->
+    <div id="filter-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel animate-scale-up max-w-lg filter-modal-content">
+            <!-- Header -->
+            <div class="filter-modal-header">
+                <h2>Filters</h2>
+                <button id="btn-close-filters" class="modal-close-btn" title="Close">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            
+            <!-- Scrollable Content -->
+            <div class="filter-modal-body">
+                <!-- Price Range Section -->
+                <div class="filter-section-block">
+                    <h3>Price Range</h3>
+                    <p id="filter-price-avg" class="section-subtext">The average price of vehicles is LKR 24,000,000</p>
+                    
+                    <!-- Histogram container -->
+                    <div class="price-histogram-container">
+                        <div id="price-histogram" class="price-histogram">
+                            <!-- JS will inject 20-30 distribution bars here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Dual Range Slider -->
+                    <div class="dual-range-slider-wrapper">
+                        <div class="range-slider-container">
+                            <input type="range" id="price-min-range" min="0" max="60000000" step="100000" value="0" class="range-input min-range">
+                            <input type="range" id="price-max-range" min="0" max="60000000" step="100000" value="60000000" class="range-input max-range">
+                            <div class="range-track" id="slider-track"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Text inputs -->
+                    <div class="price-inputs-row">
+                        <div class="price-field-box">
+                            <label for="price-min-input">Min price</label>
+                            <div class="price-input-currency">
+                                <span>LKR</span>
+                                <input type="number" id="price-min-input" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="price-field-box">
+                            <label for="price-max-input">Max price</label>
+                            <div class="price-input-currency">
+                                <span>LKR</span>
+                                <input type="number" id="price-max-input" value="60000000" placeholder="60,000,000">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Condition Section (Brand New vs Used cards) -->
+                <div class="filter-section-block">
+                    <h3>Vehicle Condition</h3>
+                    <div class="pill-selector-group" id="selector-condition">
+                        <button class="pill-option active" data-value="">Any</button>
+                        <button class="pill-option" data-value="brand new">Brand New</button>
+                        <button class="pill-option" data-value="reconditioned">Reconditioned</button>
+                        <button class="pill-option" data-value="used">Used</button>
+                    </div>
+                </div>
+                
+                <!-- Transmission Section -->
+                <div class="filter-section-block">
+                    <h3>Transmission</h3>
+                    <div class="pill-selector-group" id="selector-transmission">
+                        <button class="pill-option active" data-value="">Any</button>
+                        <button class="pill-option" data-value="automatic">Automatic</button>
+                        <button class="pill-option" data-value="manual">Manual</button>
+                        <button class="pill-option" data-value="tiptronic">Tiptronic</button>
+                    </div>
+                </div>
+                
+                <!-- Fuel Type Section -->
+                <div class="filter-section-block">
+                    <h3>Fuel Type</h3>
+                    <div class="pill-selector-group" id="selector-fuel">
+                        <button class="pill-option active" data-value="">Any</button>
+                        <button class="pill-option" data-value="petrol">Petrol</button>
+                        <button class="pill-option" data-value="diesel">Diesel</button>
+                        <button class="pill-option" data-value="hybrid">Hybrid</button>
+                        <button class="pill-option" data-value="electric">Electric</button>
+                    </div>
+                </div>
+
+                <!-- Negotiability (Type of Place lookalike) -->
+                <div class="filter-section-block">
+                    <h3>Price Negotiability</h3>
+                    <div class="card-selector-group" id="selector-negotiable">
+                        <div class="card-option active" data-value="">
+                            <h4>Any Pricing</h4>
+                            <p>Show all fixed price and negotiable ads</p>
+                        </div>
+                        <div class="card-option" data-value="negotiable">
+                            <h4>Negotiable Only</h4>
+                            <p>Prices are open to discussions or offers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer action bar -->
+            <div class="filter-modal-footer">
+                <button id="btn-clear-all-filters" class="btn-clear-link">Clear all</button>
+                <button id="btn-apply-filters" class="btn btn-primary btn-apply">
+                    Show 0 vehicles
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript Entrypoints -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
