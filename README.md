@@ -201,3 +201,17 @@ homepage    Dashboard as 🔴
 | `768px – 992px` | 2-column ad grid |
 | `> 992px` | 3-column ad grid, horizontal filter capsule bar |
 
+---
+
+
+<img width="1920" height="1000" alt="image" src="https://github.com/user-attachments/assets/13f47926-2096-4acf-b199-bcefe42ab42c" />
+
+
+<img width="1920" height="999" alt="image" src="https://github.com/user-attachments/assets/f612fa85-104f-4a91-a481-9e4c4066dfb4" />
+
+
+<img width="1920" height="999" alt="image" src="https://github.com/user-attachments/assets/728ee22b-dc37-49fb-8eeb-2e9c526a5dbb" />
+
+
+
+
