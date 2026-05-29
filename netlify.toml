@@ -3,5 +3,21 @@
 [build]
   publish = "."
 
-# If later adding a build step (e.g., npm run build), set `command = "npm run build"`
-# and change `publish` to the appropriate build output directory (e.g., "dist" or "build").
+# SPA fallback: serve index.html for all client-side routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+
+# Security headers applied to all responses
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+# NOTE: Do NOT store secrets or API tokens in this repo. Set environment variables in the Netlify UI under Site settings -> Build & deploy -> Environment.
