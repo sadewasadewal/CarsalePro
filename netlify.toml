@@ -1,0 +1,7 @@
+# Netlify configuration for CarsalePro
+# Static site: serve index.html at repo root. No build step required.
+[build]
+  publish = "."
+
+# If later adding a build step (e.g., npm run build), set `command = "npm run build"`
+# and change `publish` to the appropriate build output directory (e.g., "dist" or "build").
