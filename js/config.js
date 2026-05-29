@@ -60,6 +60,12 @@ let isFirebaseLive = false;
 
 // Attempt to load and initialize Firebase
 export async function initializeFirebase() {
+    if (sessionStorage.getItem('vahanapissa_force_demo') === 'true') {
+        console.log('VahanaPissa: Forced Demo Mode by user settings.');
+        isFirebaseLive = false;
+        return { enabled: false, app: null, auth: null, db: null };
+    }
+
     const config = await getFirebaseConfig();
     
     if (!config || !config.apiKey || !config.projectId) {

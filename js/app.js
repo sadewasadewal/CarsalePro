@@ -132,7 +132,15 @@ const elements = {
     editAdDescription: document.getElementById('edit-ad-description'),
     editAdSellerName: document.getElementById('edit-ad-seller-name'),
     editAdSellerPhone: document.getElementById('edit-ad-seller-phone'),
-    editAdWhatsappLink: document.getElementById('edit-ad-whatsapp-link')
+    editAdWhatsappLink: document.getElementById('edit-ad-whatsapp-link'),
+    
+    // Unauthorized Domain elements
+    unauthorizedDomainModal: document.getElementById('unauthorized-domain-modal'),
+    btnCloseUnauthorized: document.getElementById('btn-close-unauthorized'),
+    btnSwitchDemo: document.getElementById('btn-switch-demo'),
+    btnUsePasswordAuth: document.getElementById('btn-use-password-auth'),
+    btnRedirectLocalhost: document.getElementById('btn-redirect-localhost'),
+    unauthorizedHostname: document.getElementById('unauthorized-hostname')
 };
 
 // Default Car Image Placeholder SVG string (clean light mode design)
@@ -434,7 +442,28 @@ function setupEventHandlers() {
                 showToast('Signed in with Google successfully!', 'success');
                 window.location.hash = '#home';
             } catch (error) {
-                showToast('Google Sign-in failed: ' + error.message, 'error');
+                const errStr = (error && error.toString ? error.toString() : '') + ' ' + (error && error.message ? error.message : '') + ' ' + (error && error.code ? error.code : '');
+                if (errStr.toLowerCase().includes('unauthorized-domain') || errStr.toLowerCase().includes('unauthorized_domain')) {
+                    if (elements.unauthorizedHostname) {
+                        elements.unauthorizedHostname.innerText = window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+                    }
+                    const hostTexts = document.querySelectorAll('.unauthorized-hostname-text');
+                    hostTexts.forEach(el => {
+                        el.innerText = window.location.hostname;
+                    });
+                    
+                    if (elements.btnRedirectLocalhost) {
+                        if (window.location.hostname !== 'localhost') {
+                            elements.btnRedirectLocalhost.classList.remove('hidden');
+                        } else {
+                            elements.btnRedirectLocalhost.classList.add('hidden');
+                        }
+                    }
+                    
+                    showModal(elements.unauthorizedDomainModal);
+                } else {
+                    showToast('Google Sign-in failed: ' + error.message, 'error');
+                }
             } finally {
                 showLoader(false);
             }
@@ -511,7 +540,11 @@ function setupEventHandlers() {
                 makeSelect.value = make;
             }
             currentPage = 1;
-            loadAdsGrid();
+            if (window.location.hash !== '#browse') {
+                window.location.hash = '#browse';
+            } else {
+                loadAdsGrid();
+            }
         });
     });
 
@@ -542,7 +575,11 @@ function setupEventHandlers() {
                 }
             });
             
-            loadAdsGrid();
+            if (window.location.hash !== '#browse') {
+                window.location.hash = '#browse';
+            } else {
+                loadAdsGrid();
+            }
         });
     });
     
@@ -639,7 +676,26 @@ function setupEventHandlers() {
         elements.adEditForm.addEventListener('submit', handleEditAdSubmit);
     }
     
-    [elements.detailsModal, elements.mockLoginModal, elements.editModal].forEach(modal => {
+    // Unauthorized Domain modal listeners
+    if (elements.btnCloseUnauthorized) {
+        elements.btnCloseUnauthorized.addEventListener('click', () => hideModal(elements.unauthorizedDomainModal));
+    }
+    if (elements.btnUsePasswordAuth) {
+        elements.btnUsePasswordAuth.addEventListener('click', () => hideModal(elements.unauthorizedDomainModal));
+    }
+    if (elements.btnSwitchDemo) {
+        elements.btnSwitchDemo.addEventListener('click', () => {
+            sessionStorage.setItem('vahanapissa_force_demo', 'true');
+            window.location.reload();
+        });
+    }
+    if (elements.btnRedirectLocalhost) {
+        elements.btnRedirectLocalhost.addEventListener('click', () => {
+            window.location.hostname = 'localhost';
+        });
+    }
+
+    [elements.detailsModal, elements.mockLoginModal, elements.editModal, elements.unauthorizedDomainModal].forEach(modal => {
         if (modal) {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) hideModal(modal);
@@ -1806,6 +1862,17 @@ function clearAllFilters() {
     
     updateApplyBtnCount();
 }
+function refreshActiveViews() {
+    const hash = window.location.hash || '#home';
+    if (hash === '#home' || hash === '#browse') {
+        loadAdsGrid();
+    } else if (hash === '#admin') {
+        loadAdminPanel();
+    } else if (hash === '#dashboard') {
+        loadDashboard();
+    }
+}
+
 async function handleAdminDeleteAd() {
     if (!currentAdDetail || !currentUser) return;
     if (confirm(`Are you sure you want to permanently delete "${currentAdDetail.title}"? This cannot be undone.`)) {
@@ -1816,14 +1883,7 @@ async function handleAdminDeleteAd() {
             hideModal(elements.detailsModal);
             
             // Refresh views
-            const hash = window.location.hash || '#home';
-            if (hash === '#home') {
-                loadAdsGrid();
-            } else if (hash === '#admin') {
-                loadAdminPanel();
-            } else if (hash === '#dashboard') {
-                loadDashboard();
-            }
+            refreshActiveViews();
         } catch (err) {
             showToast('Deletion failed: ' + err.message, 'error');
         } finally {
@@ -1887,14 +1947,7 @@ async function handleEditAdSubmit(e) {
         hideModal(elements.detailsModal);
         
         // Refresh views
-        const hash = window.location.hash || '#home';
-        if (hash === '#home') {
-            loadAdsGrid();
-        } else if (hash === '#admin') {
-            loadAdminPanel();
-        } else if (hash === '#dashboard') {
-            loadDashboard();
-        }
+        refreshActiveViews();
     } catch (err) {
         showToast('Update failed: ' + err.message, 'error');
     } finally {
@@ -2014,8 +2067,8 @@ async function handleApproveAd(adId, title) {
                 hideModal(elements.detailsModal);
             }
             
-            // Refresh
-            loadAdminPanel();
+            // Refresh views
+            refreshActiveViews();
         } catch (err) {
             showToast('Approval failed: ' + err.message, 'error');
         } finally {
@@ -2036,8 +2089,8 @@ async function handleRejectAd(adId, title) {
                 hideModal(elements.detailsModal);
             }
             
-            // Refresh
-            loadAdminPanel();
+            // Refresh views
+            refreshActiveViews();
         } catch (err) {
             showToast('Rejection failed: ' + err.message, 'error');
         } finally {

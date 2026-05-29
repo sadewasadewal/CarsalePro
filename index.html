@@ -973,6 +973,44 @@
         </div>
     </div>
 
+    <!-- Google Sign-in Unauthorized Domain Modal -->
+    <div id="unauthorized-domain-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel animate-scale-up max-w-md text-center" style="padding: 30px;">
+            <button id="btn-close-unauthorized" class="modal-close-btn"><i data-lucide="x"></i></button>
+            <div class="modal-alert-header" style="margin-bottom: 20px;">
+                <i data-lucide="shield-alert" class="glow-icon" style="color: #f59e0b; width: 48px; height: 48px; margin: 0 auto 15px;"></i>
+                <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; color: var(--text-main);">Domain Not Authorized</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                    The current domain (<span id="unauthorized-hostname" style="font-family: monospace; font-weight: 600; color: var(--text-main);">localhost</span>) is not whitelisted in your Firebase project configuration for Google Sign-in.
+                </p>
+            </div>
+            
+            <div class="instructions-box" style="text-align: left; background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 15px; margin-bottom: 20px; font-size: 0.85rem; line-height: 1.6;">
+                <h4 style="font-weight: 600; margin-bottom: 8px; color: var(--text-main); display: flex; align-items: center; gap: 6px;">
+                    <i data-lucide="help-circle" style="width: 16px; height: 16px;"></i> How to fix this:
+                </h4>
+                <ol style="padding-left: 18px; margin: 0; color: var(--text-muted);">
+                    <li>Open your <a href="https://console.firebase.google.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">Firebase Console</a>.</li>
+                    <li>Select your project (<strong style="color: var(--text-main);">caradsale-498b5</strong>).</li>
+                    <li>Go to <strong>Authentication</strong> &gt; <strong>Settings</strong> &gt; <strong>Authorized Domains</strong>.</li>
+                    <li>Click <strong>Add domain</strong> and enter your current domain.</li>
+                </ol>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button id="btn-redirect-localhost" class="btn btn-primary btn-full-mobile hidden" style="padding: 12px; font-weight: 700; border-radius: 8px; background-color: #10b981; border-color: #10b981; color: white;">
+                    Switch to localhost:8000 (Recommended)
+                </button>
+                <button id="btn-switch-demo" class="btn btn-primary btn-full-mobile" style="padding: 12px; font-weight: 700; border-radius: 8px;">
+                    Switch to Demo Mode (Mock Storage)
+                </button>
+                <button id="btn-use-password-auth" class="btn btn-secondary btn-full-mobile" style="padding: 12px; border-radius: 8px;">
+                    Use Email / Password instead
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- 6. AIRBNB-STYLE DYNAMIC FILTERS MODAL -->
     <div id="filter-modal" class="modal-overlay hidden">
         <div class="modal-content glass-panel animate-scale-up max-w-lg filter-modal-content">
@@ -1087,6 +1125,6 @@
     </div>
 
     <!-- Javascript Entrypoints -->
-    <script type="module" src="js/app.js?v=1.0.6"></script>
+    <script type="module" src="js/app.js?v=1.0.8"></script>
 </body>
 </html>
