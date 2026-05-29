@@ -1,4 +1,4 @@
-# 🚗 වාහන පිස්සා.com — Sri Lanka's Premium Car Marketplace
+# වාහන පිස්සා - Sri Lanka's Premium Car Marketplace
 
 > A full-featured, modern car listing and buying platform built for Sri Lanka — with Firebase Live Mode, Demo Mode, Admin Moderation, and a stunning Glassmorphism UI.
 
